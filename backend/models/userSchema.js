@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -12,7 +11,7 @@ const userSchema = new mongoose.Schema({
   lastName: {
     type: String,
     required: [true, "Last Name Is Required!"],
-    
+    minLength: [3, "Last Name Must Contain At Least 3 Characters!"],
   },
   email: {
     type: String,
@@ -22,12 +21,14 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: [true, "Phone Is Required!"],
-    
+    minLength: [10, "Phone Number Must Contain Exact 11 Digits!"],
+    maxLength: [10, "Phone Number Must Contain Exact 11 Digits!"],
   },
   nic: {
     type: String,
     required: [true, "NIC Is Required!"],
-   
+    minLength: [12, "NIC Must Contain Only 12 Digits!"],
+    maxLength: [12, "NIC Must Contain Only 12 Digits!"],
   },
   dob: {
     type: String,
@@ -41,6 +42,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Password Is Required!"],
+    minLength: [8, "Password Must Contain At Least 8 Characters!"],
     select: false,
   },
   role: {
@@ -48,6 +50,7 @@ const userSchema = new mongoose.Schema({
     required: [true, "User Role Required!"],
     enum: ["Patient", "Doctor", "Admin"],
   },
+
   doctorDepartment:{
     type: String,
   },
@@ -55,6 +58,7 @@ const userSchema = new mongoose.Schema({
     public_id: String,
     url: String,
   },
+     
 });
 
 userSchema.pre("save", async function (next) {
@@ -75,5 +79,3 @@ userSchema.methods.generateJsonWebToken = function () {
 };
 
 export const User = mongoose.model("User", userSchema);
-   
-  
