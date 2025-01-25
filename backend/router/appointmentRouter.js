@@ -3,7 +3,7 @@ import {
   deleteAppointment,
   getAllAppointments,
   postAppointment,
- updateAppointmentStatus,
+  updateAppointmentStatus,
 } from "../controller/appointmentController.js";
 import {
   isAdminAuthenticated,
@@ -13,10 +13,8 @@ import {
 const router = express.Router();
 
 router.post("/post", isPatientAuthenticated, postAppointment);
-
 router.get("/getall", isAdminAuthenticated, getAllAppointments);
 router.put("/update/:id", isAdminAuthenticated, updateAppointmentStatus);
+router.delete("/delete/:id", isAdminAuthenticated, deleteAppointment);
 
-router.delete("/delete/:id", isAdminAuthenticated, deleteAppointment);   
-
-export default router; 
+export default router;
