@@ -15,13 +15,13 @@ const messageSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    validate: [ validator.isEmail, "Provide A Valid Email!"],
+    validate: [validator.isEmail, "Provide A Valid Email!"],
   },
   phone: {
     type: String,
     required: true,
-    minLength: [11, "Phone Number Must Contain Exact 11 Digits!"],
-    maxLength: [11, "Phone Number Must Contain Exact 11 Digits!"],
+    minLength: [10, "Phone Number Must Contain Exact 11 Digits!"],
+    maxLength: [10, "Phone Number Must Contain Exact 11 Digits!"],
   },
   message: {
     type: String,
@@ -31,4 +31,3 @@ const messageSchema = new mongoose.Schema({
 });
 
 export const Message = mongoose.model("Message", messageSchema);
- 
