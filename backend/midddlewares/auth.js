@@ -24,7 +24,6 @@ export const isAdminAuthenticated = catchAsyncErrors(
 );
 
 // Middleware to authenticate frontend users
-
 export const isPatientAuthenticated = catchAsyncErrors(
   async (req, res, next) => {
     const token = req.cookies.patientToken;
@@ -41,8 +40,8 @@ export const isPatientAuthenticated = catchAsyncErrors(
     next();
   }
 );
-/*
-export const isAuthorized = (...roles) => {
+
+/* const isAuthorized = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(
@@ -53,5 +52,5 @@ export const isAuthorized = (...roles) => {
     }
     next();
   };
-};   */
-  
+};
+ */
